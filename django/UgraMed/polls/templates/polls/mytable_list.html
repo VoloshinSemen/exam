@@ -1,0 +1,24 @@
+{% if object_list %} 
+  <form action="{% url 'updateRecord' 0%}" method="post">
+    {% csrf_token %}
+    <input type="submit" name="addRecord" 
+                  formaction="{% url 'addRecord' %}" value="add record" />
+    <table style="width:100%">
+    {% for record in object_list %}
+      <tr>
+          {% csrf_token %}
+		      <p>{{ record.id }}</p>
+		      <input type="text" name="a{{ record.id }}" value="{{ record.a }}">
+		      <input type="text" name="b{{ record.id }}" value="{{ record.b }}">
+		      <input type="number" name="c{{ record.id }}" value="{{ record.c }}"" step="0.00000001"> 
+          <input type="submit" name="save{{ record.id }}" 
+                  formaction="{% url 'updateRecord' record.id %}" value="update" />
+          <input type="submit" name="delete{{ record.id }}" 
+                  formaction="{% url 'deleteRecord' record.id %}" value="delete" />
+	     </tr>
+    {% endfor %}
+    </table> 
+  </form>             
+{% else %}
+    <p>No data available.</p>
+{% endif %}
