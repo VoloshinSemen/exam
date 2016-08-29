@@ -1,2 +1,1 @@
-# work in progress
-Qt сделан, разбираюсь с Django
+Qt, django, sqlite
